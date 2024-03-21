@@ -14,8 +14,8 @@
 	<h1>
 		<span class="welcome">
 			<picture>
-			<img src={logo} alt="welcome-3"/>
 			<!--
+				<img src={logo} alt="welcome-3"/>
 				<source srcset={welcome} type="image/webp" />
 				<img src={welcome_fallback} alt="Welcome" />
 			-->
