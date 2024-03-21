@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- svelte-ignore a11y-missing-attribute -->
 <html>
 <head>
   <meta charset="utf-8">
@@ -38,12 +39,12 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGVvYmlybzAwIiwiYSI6ImNsdTFxbXkwMzBkaDcycXBkbXU3M29vejQifQ.ZALCogfOtg_4D1muzFxKqA';
-
-  function initMap() {
+  let x,y=(-70,40);
+  function initMap(x,y) {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40],
+      center: [x, y],
       zoom: 9
     });
   }
@@ -58,10 +59,11 @@
     console.log('Starting Longitude:', startingLongitude);
     console.log('Destination Latitude:', destinationLatitude);
     console.log('Destination Longitude:', destinationLongitude);
+    initMap(startingLatitude,startingLongitude);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    initMap();
+    initMap(69,69);
   });
 </script>
 </body>
