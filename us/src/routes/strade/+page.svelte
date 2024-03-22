@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
+<!-- svelte-ignore a11y-missing-attribute -->
+<html>
 <head>
   <meta charset="utf-8">
   <title>Display a map on a webpage</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
   <style>
     body { margin: 0; padding: 0; }
     #map { position: absolute; top: 150px; bottom: 0; width: 100%; }
@@ -34,28 +34,19 @@
   <button type="submit">Submit</button>
 </form>
 
-  <div id="map"></div>
+<div id="map"></div>
 
-
-
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGVvYmlybzAwIiwiYSI6ImNsdTFxbXkwMzBkaDcycXBkbXU3M29vejQifQ.ZALCogfOtg_4D1muzFxKqA';
-  
-  function initMap() {
+  let x,y=(-70,40);
+  function initMap(x,y) {
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40],
+      center: [x, y],
       zoom: 9
     });
-
-    const directions = new MapboxDirections({
-      accessToken: mapboxgl.accessToken,
-      unit: 'metric',
-      profile: 'mapbox/driving'
-    });
-
-    map.addControl(directions, 'top-left');
   }
 
   function handleSubmit(event) {
@@ -68,23 +59,12 @@
     console.log('Starting Longitude:', startingLongitude);
     console.log('Destination Latitude:', destinationLatitude);
     console.log('Destination Longitude:', destinationLongitude);
+    initMap(startingLatitude,startingLongitude);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    initMap();
+    initMap(69,69);
   });
-  
-  let url = "https://api.mapbox.com/directions/v5/mapbox/cycling/-84.518641,39.134270;-84.512023,39.102779?geometries=geojson&access_token="+mapboxgl.accessToken
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => console.error('Error fetching air pollution data:', error));
-
 </script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
-
 </body>
-
+</html>
