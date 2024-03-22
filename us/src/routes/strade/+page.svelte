@@ -3,33 +3,65 @@
     <meta charset='utf-8' />
     <title>airq</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js'>
+    </script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css' rel='stylesheet'/>
     <style>
       body {
         margin: 0;
         padding: 0;
+        background-color: black;
       }
 
       #map {
-        position: relative;
+        position: absolute;
         top: 100px;
         bottom: 0;
         width: 1000px;
         height: 500px;
+        border-radius: 20px;
+        margin-left: 210px;
+        margin-top: 30px;
       }
+
+      .but {
+    font-family: Georgia;
+    background-color: rgba(0, 0, 1, 0);
+    border: 2px solid white;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    position: absolute; /* Position the button absolutely */
+    bottom: 40px;
+    left: 50%; /* Center the button horizontally */
+    transform: translateX(-50%); /* Center the button horizontally */
+    z-index: 2; /* Set z-index to 2 to place buttons above video */
+  }
+
+  .but:hover {
+    background-color: white;
+    color: #000000;  
+  }
+
     </style>
   </head>
   <body>
       
     <div id='airQuality'></div>
     <div id='map'></div>
+    <a href='./test'><button class="but">Calculate</button></a>
+    
     <script>
       const airKey = '10025b0589b068a1acf38c14565b93ac'; // Replace with your actual API key
       mapboxgl.accessToken = 'pk.eyJ1IjoibWF0dGVvYmlybzAwIiwiYSI6ImNsdTFxbXkwMzBkaDcycXBkbXU3M29vejQifQ.ZALCogfOtg_4D1muzFxKqA';
+
       let airQ;
       function fetchAirPollutionData(lat, lon, apiKey) {
-        console.log("stiam fetchando");
         const url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     
         fetch(url)
@@ -65,7 +97,8 @@ async function getRoute(end) {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
   // only the end or destination will change
-
+  //let lat = end[0];
+  //let lon = end[1];
   airQ = fetchAirPollutionData(end[1],end[0],airKey);
   document.getElementById('airQuality').innerText = `Air Quality: ${airQ}`;
   const query = await fetch(
@@ -109,7 +142,6 @@ async function getRoute(end) {
   }
   // add turn instructions here at the end
 }
-
 map.on('load', () => {
   // make an initial directions request that
   // starts and ends at the same location
@@ -140,6 +172,7 @@ map.on('load', () => {
       'circle-color': '#3887be'
     }
   });
+
   map.on('click', (event) => {
   const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
   const end = {
@@ -183,6 +216,7 @@ map.on('load', () => {
       }
     });
   }
+
   getRoute(coords);
 });
 });

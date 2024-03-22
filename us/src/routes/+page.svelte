@@ -1,8 +1,6 @@
 <script>
 	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import logo from "$lib/images/welcome-3.png"
+  import video from '$lib/images/vip.mp4';
 </script>
 
 <head>
@@ -26,7 +24,7 @@
     overflow: hidden;
   }
   
-  header video {
+  header .video {
     position: absolute;
     top: 0;
     left: 0;
@@ -130,20 +128,20 @@
 </head>
 <body>
 
-<header>
-  <div class="overlay"></div>
-  <video playsinline autoplay muted loop>
-    <source src="vip.mp4" type="video/mp4">
-  </video>
-  <div class="container">
-    <div class="d-flex h-100 text-center align-items-center">
-      <div class="w-100 text-white">
-        <h1 class="display-3">Greenair</h1>
+  <header>
+    <div class="overlay"></div>
+    <video playsinline autoplay muted loop>
+      <source src="vip.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+      <div class="d-flex h-100 text-center align-items-center">
+        <div class="w-100 text-white">
+          <h1 class="display-3">Greenair</h1>
         <p>Discover eco-friendly voyages effortlessly with our AI-powered website, guiding you on sustainable paths while considering air pollution levels. Start your journey towards mindful exploration today</p>
-        <a href="routes.html" >
+        <a href="./strade" >
           <button class="button button1">Try Now!</button>
         </a>
-        <a href="form.html"> 
+        <a href="./HTML"> 
           <button class="button button2">Contact Us</button>
         </a>
       </div>
@@ -152,16 +150,11 @@
 </header>
 
 <section>
-  <h1 style="margin-left:150px;">About</h1>
+  <h1 style="margin-left:300px;">About</h1>
     <div id="description">
         <p>
-        Embark on eco-conscious journeys seamlessly through our innovative website harnessing the power of artificial intelligence. Our platform not only guides you through personalized paths for your voyages but also prioritizes environmental sustainability by factoring in air pollution levels. By integrating cutting-edge AI algorithms, we ensure that your travel experiences not only fulfill your desires but also contribute to a greener planet.
-
-        Our AI-driven recommendations take into account various factors, including your preferences, destination, mode of transportation, and real-time air quality data. By considering air pollution levels along your route, we help you make informed decisions that minimize your carbon footprint and promote eco-friendly travel practices.
         
-        Through our platform, users gain access to comprehensive insights and actionable recommendations tailored to their specific travel needs. Whether you're planning a leisurely vacation or a business trip, our AI algorithms analyze vast amounts of data to curate personalized itineraries that prioritize sustainability without compromising on your travel goals.
-        
-        Join us in revolutionizing the way we explore the world, one eco-conscious journey at a time. Start your sustainable travel adventure today with our AI-powered platform, and together, let's pave the way towards a cleaner and greener future
+Introducing Greenair: Your Ultimate Pollution Navigator! Our cutting-edge web app analyzes map paths to deliver real-time pollution assessments. With precision algorithms and data integration, we offer instant insights into air quality, traffic density, and greenery coverage along your route. Greenair empowers users to make informed decisions for healthier living and advocate for environmental change. Join us in revolutionizing how we interact with our surroundings and pave the way for a cleaner, greener future
         </p>
     </div>
 
@@ -177,32 +170,6 @@
 
 </body>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-			<!--
-				<img src={logo} alt="welcome-3"/>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			-->
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
 
 <style>
 	section {
@@ -217,19 +184,4 @@
 		width: 100%;
 	}
 
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>
